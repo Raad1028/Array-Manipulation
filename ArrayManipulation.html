@@ -1,0 +1,99 @@
+<meta name="color-scheme" content="dark">
+<h1>Array Manipulator</h1>
+<h2 id=arrayDisplay>The array will be displayed here</h2>
+<button id=firstVal>Add your first value</button>
+<button id=unshiftVal style ="display: none">Add value to the <br> beginning of the array</button>
+<button id=shiftVal style ="display: none">Remove value from the <br> beginning of the array</button>
+<button id=pushVal style ="display: none">Add value to end <br> of the array</button>
+<button id=popVal style ="display: none">Remove value from the <br> end of the array</button>
+<button id=sorting style="display: none">Sort the values in alphabetical order</button>
+<script>
+//Creates the array which will be manipulated.
+var array1 = [];
+
+//Identifies all the buttons in the HTML part of the code.
+var firstValBtn = document.getElementById("firstVal");
+var unshiftValBtn = document.getElementById("unshiftVal");
+var shiftValBtn = document.getElementById("shiftVal");
+var pushValBtn = document.getElementById("pushVal");
+var popValBtn = document.getElementById("popVal");
+var sortBtn = document.getElementById("sorting");
+//firstBtnToggle starts as being true.
+var firstBtnToggle = true
+
+//Starts "listening" for buttons being clicked and will activate a function.
+firstValBtn.addEventListener("click", addFirstVal)
+unshiftValBtn.addEventListener("click", unshiftArray)
+shiftValBtn.addEventListener("click", shiftArray)
+pushValBtn.addEventListener("click", pushArray)
+popValBtn.addEventListener("click", popArray)
+sortBtn.addEventListener("click", sortArray)
+
+//This function toggles the visibility of certain buttons when activated.
+function toggleBtns() {
+	if (firstBtnToggle) {
+		firstVal.style.display = "none"
+		unshiftVal.style.display = "block"
+		shiftVal.style.display = "block"
+		pushVal.style.display = "block"
+		popVal.style.display = "block"
+		sortBtn.style.display = "block"
+		firstBtnToggle = false
+	}
+	else {
+		firstVal.style.display = "block"
+		unshiftVal.style.display = "none"
+		shiftVal.style.display = "none"
+		pushVal.style.display = "none"
+		popVal.style.display = "none"
+		sortBtn.style.display = "none"
+		firstBtnToggle = true
+	}
+}
+//Checks if the length of the array to see if all the visible buttons are currently relevant, if not it will run the toggleBtns function.
+function checkArrayLength() {
+	if (array1.length < 1 && firstBtnToggle == false) {
+		toggleBtns()
+	}
+	else if (array1.length > 0 && firstBtnToggle == true) {
+		toggleBtns()
+	}
+}
+//Function used to add the first value of the array
+function addFirstVal() {
+	array1.push(prompt())
+	arrayDisplay.innerHTML = array1
+	checkArrayLength();
+}
+//Function used to add a value to the end of the array
+function pushArray() {
+	array1.push(prompt())
+	arrayDisplay.innerHTML = array1
+	checkArrayLength()
+}
+//Function used to remove the value in the end of the array
+function popArray() {
+	array1.pop()
+	arrayDisplay.innerHTML = array1
+	checkArrayLength()
+}
+//Function used to add a value to the beginning of the array
+function unshiftArray() {
+	array1.unshift(prompt())
+	arrayDisplay.innerHTML = array1
+	checkArrayLength()
+}
+//Function used to remove the value in the beginning of the array
+function shiftArray() {
+	array1.shift()
+	arrayDisplay.innerHTML = array1
+	checkArrayLength()
+}
+//Function sort the values in the array in alphabetical order.
+function sortArray() {
+	array1.sort()
+	arrayDisplay.innerHTML = array1
+}
+
+</script>
+
